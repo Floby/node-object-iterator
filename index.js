@@ -95,6 +95,11 @@ module.exports = function ObjectIterator(source, checkRecursive) {
     }
 }
 
+/**
+ * Returns a function that will iterate over the values
+ * of the given composed value (array/object)
+ * @param value [Object|Array] the value on which to iterate
+ */
 function makeGetCurrent (value) {
     if(Array.isArray(value)) {
         return arrayGetCurrent(value);
@@ -104,6 +109,9 @@ function makeGetCurrent (value) {
         return objectGetCurrent(value);
 }
 
+/**
+ * iterate over an array
+ */
 function arrayGetCurrent (array) {
     var getCurrent = function() {
         if(getCurrent.key >= array.length) {
@@ -115,6 +123,9 @@ function arrayGetCurrent (array) {
     return getCurrent;
 }
 
+/**
+ * iterate over an object
+ */
 function objectGetCurrent (object) {
     var keys = Object.keys(object);
     var getCurrent = function() {
@@ -125,6 +136,11 @@ function objectGetCurrent (object) {
     return getCurrent;
 }
 
+/**
+ * test if the given type of value is a composed or simple
+ * value
+ * @param type [String] the type of value
+ */
 function isSimpleValue (type) {
     switch(type) {
         case 'array':
