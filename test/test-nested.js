@@ -18,6 +18,18 @@ exports.testArrayInObject = function(test) {
     test.done();
 }
 
+exports.testLongArrayInObject = function(test) {
+    var source = {one: 1, array: [1, null, true, null]};
+    var expected = ['object', 'number', 'array', 'number', 'null', 'boolean', 'null', 'end-array', 'end-object'];
+    var next = oi(source);
+    var v;
+    while(v = next()) {
+        test.equal(v.type, expected.shift(), "Unexpected token type");
+    }
+    test.equal(0, expected.length, 'Not everything has been traversed');
+    test.done();
+}
+
 exports.testObjectInArray = function(test) {
     var source = [{one:1}];
     var expected = ['array', 'object', 'number', 'end-object', 'end-array'];

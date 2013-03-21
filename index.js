@@ -64,7 +64,7 @@ module.exports = function ObjectIterator(source, checkRecursive) {
                 if(!childIterator) {
                     // try and the current child value to iterate on
                     var c = getCurrent();
-                    if(c) {
+                    if(typeof c !== 'undefined') {
                         childIterator = ObjectIterator(c);
                     }
                     else {
