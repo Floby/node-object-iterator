@@ -82,7 +82,9 @@ module.exports = function ObjectIterator(source, checkRecursive) {
                         childIterator = null;
                         return iterator();
                     }
-                    res.key = getCurrent.key;
+                    if(!res.key && res.key !== 0) {
+                        res.key = getCurrent.key;
+                    }
                     return res;
                 }
                 break;
