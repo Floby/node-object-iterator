@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Floby/node-object-iterator.png)](https://travis-ci.org/Floby/node-object-iterator)
+
 node-object-iterator
 ====================
 
