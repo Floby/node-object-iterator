@@ -103,12 +103,12 @@ function makeGetCurrent (value) {
 
 function arrayGetCurrent (array) {
     var getCurrent = function() {
-        if(getCurrent.index >= array.length) {
+        if(getCurrent.key >= array.length) {
             return;
         }
-        return array[getCurrent.index++];
+        return array[getCurrent.key++];
     }
-    getCurrent.index = 0;
+    getCurrent.key = 0;
     return getCurrent;
 }
 
