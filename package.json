@@ -1,0 +1,27 @@
+{
+  "name": "object-iterator",
+  "version": "0.0.0",
+  "description": "A module to walk through an object with an iterator",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodeunit test/test-*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Floby/node-object-iterator.git"
+  },
+  "keywords": [
+    "object",
+    "traverse",
+    "traversal",
+    "iterator",
+    "json"
+  ],
+  "devDependencies": {
+    "nodeunit":"0.7"
+  },
+  "author": "Florent Jaby <florent.jaby@gmail.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "63348372ff063a2545c9ece32f94800d7a3fffa4"
+}
