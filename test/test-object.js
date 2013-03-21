@@ -1,8 +1,8 @@
 var oi = require('../');
 
-exports.testTypesInArray = function(test) {
-    var source = [1, 2, 3];
-    var expected = ['array', 'number', 'number', 'number', 'end-array'];
+exports.testTypesInObject = function(test) {
+    var source = {one: 1, two: 2, three: 3}
+    var expected = ['object', 'number', 'number', 'number', 'end-object'];
     var next = oi(source);
     var v;
     while(v = next()) {
@@ -12,13 +12,13 @@ exports.testTypesInArray = function(test) {
     test.done();
 }
 
-exports.testKeysInArray = function(test) {
-    var source = [1, 2, 3];
-    var expected = [0,1,2];
+exports.testKeysInObject = function(test) {
+    var source = {one: 1, two: 2, three: 3}
+    var expected = Object.keys(source);
     var next = oi(source);
     var v;
     while(v = next()) {
-        if(v.key || v.key === 0) {
+        if(v.key) {
             test.equal(v.key, expected.shift())
         }
         else {

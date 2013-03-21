@@ -82,6 +82,7 @@ module.exports = function ObjectIterator(source, checkRecursive) {
                         childIterator = null;
                         return iterator();
                     }
+                    res.key = getCurrent.key;
                     return res;
                 }
                 break;
@@ -106,9 +107,19 @@ function arrayGetCurrent (array) {
         if(getCurrent.key >= array.length) {
             return;
         }
-        return array[getCurrent.key++];
+        return array[++getCurrent.key];
     }
-    getCurrent.key = 0;
+    getCurrent.key = -1;
+    return getCurrent;
+}
+
+function objectGetCurrent (object) {
+    var keys = Object.keys(object);
+    var getCurrent = function() {
+        if(!keys.length) return;
+        getCurrent.key = keys.shift();
+        return object[getCurrent.key];
+    }
     return getCurrent;
 }
 
