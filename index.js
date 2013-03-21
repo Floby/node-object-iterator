@@ -102,13 +102,14 @@ function makeGetCurrent (value) {
 }
 
 function arrayGetCurrent (array) {
-    var i = 0;
-    return function() {
-        if(i >= array.length) {
+    var getCurrent = function() {
+        if(getCurrent.index >= array.length) {
             return;
         }
-        return array[i++];
+        return array[getCurrent.index++];
     }
+    getCurrent.index = 0;
+    return getCurrent;
 }
 
 function isSimpleValue (type) {
