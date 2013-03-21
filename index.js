@@ -11,6 +11,7 @@ module.exports = function ObjectIterator(source, checkRecursive) {
 
     // determine type. Sometimes array come up as object with typeof
     var type = Array.isArray(source) ? 'array' : typeof source;
+    var type = getType(source);
 
     // if it's just a single value, things are easy
     if(isSimpleValue(type)) {
@@ -151,4 +152,10 @@ function isSimpleValue (type) {
             return true;
             break;
     }
+}
+
+function getType (source) {
+    var type = Array.isArray(source) ? 'array' : typeof source;
+    if(source === null) type = 'null';
+    return type;
 }
