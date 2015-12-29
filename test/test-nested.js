@@ -7,10 +7,10 @@ exports.testArrayInObject = function(test) {
     var v;
     while(v = next()) {
         test.equal(v.type, expected.shift(), "Unexpected token type");
-        if(v.type == 'array') {
+        if(v.type === 'array') {
             test.deepEqual(v.key, 'array', 'Unexpected key for that value');
         }
-        else if(v.type == 'number') {
+        else if(v.type === 'number') {
             test.deepEqual(v.key, 0, 'Unexpected key for that value');
         }
     }
@@ -37,10 +37,10 @@ exports.testObjectInArray = function(test) {
     var v;
     while(v = next()) {
         test.equal(v.type, expected.shift(), "Unexpected token type");
-        if(v.type == 'object') {
+        if(v.type === 'object') {
             test.deepEqual(v.key, 0, 'Unexpected key for that value');
         }
-        else if(v.type == 'number') {
+        else if(v.type === 'number') {
             test.deepEqual(v.key, 'one', 'Unexpected key for that value');
         }
     }

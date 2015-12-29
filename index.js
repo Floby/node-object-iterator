@@ -5,7 +5,7 @@
  */
 module.exports = function ObjectIterator(source, checkRecursive) {
     var _sent = []; // not used for now
-    if(checkRecursive && typeof checkRecursive == 'array') {
+    if(checkRecursive && typeof checkRecursive === 'array') {
         _sent = checkRecursive;
     }
 
