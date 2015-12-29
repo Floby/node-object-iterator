@@ -16,7 +16,7 @@ exports.testArrayInObject = function(test) {
     }
     test.equal(0, expected.length, 'Not everything has been traversed');
     test.done();
-}
+};
 
 exports.testLongArrayInObject = function(test) {
     var source = {one: 1, array: [1, null, true, null]};
@@ -28,7 +28,7 @@ exports.testLongArrayInObject = function(test) {
     }
     test.equal(0, expected.length, 'Not everything has been traversed');
     test.done();
-}
+};
 
 exports.testObjectInArray = function(test) {
     var source = [{one:1}];
@@ -46,4 +46,4 @@ exports.testObjectInArray = function(test) {
     }
     test.equal(0, expected.length, 'Not everything has been traversed');
     test.done();
-}
+};
