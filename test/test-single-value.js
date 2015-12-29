@@ -5,4 +5,4 @@ exports.testNull = function(test) {
     var next = oi(source);
     test.equal(next().type, 'null', 'Type should be "null"');
     test.done();
-}
+};

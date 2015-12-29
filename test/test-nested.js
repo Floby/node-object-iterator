@@ -7,16 +7,16 @@ exports.testArrayInObject = function(test) {
     var v;
     while(v = next()) {
         test.equal(v.type, expected.shift(), "Unexpected token type");
-        if(v.type == 'array') {
+        if(v.type === 'array') {
             test.deepEqual(v.key, 'array', 'Unexpected key for that value');
         }
-        else if(v.type == 'number') {
+        else if(v.type === 'number') {
             test.deepEqual(v.key, 0, 'Unexpected key for that value');
         }
     }
     test.equal(0, expected.length, 'Not everything has been traversed');
     test.done();
-}
+};
 
 exports.testLongArrayInObject = function(test) {
     var source = {one: 1, array: [1, null, true, null]};
@@ -28,7 +28,7 @@ exports.testLongArrayInObject = function(test) {
     }
     test.equal(0, expected.length, 'Not everything has been traversed');
     test.done();
-}
+};
 
 exports.testObjectInArray = function(test) {
     var source = [{one:1}];
@@ -37,13 +37,13 @@ exports.testObjectInArray = function(test) {
     var v;
     while(v = next()) {
         test.equal(v.type, expected.shift(), "Unexpected token type");
-        if(v.type == 'object') {
+        if(v.type === 'object') {
             test.deepEqual(v.key, 0, 'Unexpected key for that value');
         }
-        else if(v.type == 'number') {
+        else if(v.type === 'number') {
             test.deepEqual(v.key, 'one', 'Unexpected key for that value');
         }
     }
     test.equal(0, expected.length, 'Not everything has been traversed');
     test.done();
-}
+};

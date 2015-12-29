@@ -5,12 +5,11 @@
  */
 module.exports = function ObjectIterator(source, checkRecursive) {
     var _sent = []; // not used for now
-    if(checkRecursive && typeof checkRecursive == 'array') {
+    if(checkRecursive && typeof checkRecursive === 'array') {
         _sent = checkRecursive;
     }
 
-    // determine type. Sometimes array come up as object with typeof
-    var type = Array.isArray(source) ? 'array' : typeof source;
+    // determine type. array will come up as object with typeof
     var type = getType(source);
 
     // if it's just a single value, things are easy
@@ -22,21 +21,21 @@ module.exports = function ObjectIterator(source, checkRecursive) {
             return {
                 type: type,
                 value: source
-            }
-        }
+            };
+        };
     }
     // prepare for the battle
     else {
         var getCurrent = makeGetCurrent(source);
     }
-    
+
     var state = 'start';
     var childIterator;
 
     /**
      * Each call to this iterator will emit an object like this
      *  - type: a string describing the state of the iterator.
-     *      usually the type of the current value or end-<type> for 
+     *      usually the type of the current value or end-<type> for
      *      composed values
      *  - value: the actual value. This field is not always set
      */
@@ -47,18 +46,15 @@ module.exports = function ObjectIterator(source, checkRecursive) {
                 return {
                     type: 'end-'+type,
                     value: null
-                }
+                };
             case 'ended':
                 return;
-                break;
-
             case 'start':
                 state = 'traversing';
                 return {
                     type: type,
                     value: null
-                }
-                break;
+                };
             case 'traversing':
                 // if there's no current iterator to read from
                 if(!childIterator) {
@@ -91,7 +87,6 @@ module.exports = function ObjectIterator(source, checkRecursive) {
                 break;
             default:
                 throw new Error('Unknown state: '+state);
-                break;
         }
     }
 }
@@ -107,7 +102,7 @@ function makeGetCurrent (value) {
     }
     else {
     }
-        return objectGetCurrent(value);
+    return objectGetCurrent(value);
 }
 
 /**
@@ -147,10 +142,8 @@ function isSimpleValue (type) {
         case 'array':
         case 'object':
             return false;
-            break;
         default:
             return true;
-            break;
     }
 }
 

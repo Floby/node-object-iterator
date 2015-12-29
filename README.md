@@ -1,27 +1,26 @@
 [![Build Status](https://travis-ci.org/Floby/node-object-iterator.png)](https://travis-ci.org/Floby/node-object-iterator)
 
-node-object-iterator
-====================
+# node-object-iterator
 
 > A module to walk through an object with an iterator
 
-Installation
-------------
+## Installation
 
-    npm install --save object-iterator
+`npm install --save object-iterator`
 
-Usage
------
+## Usage
 
-An iterator is a function you can call several times and of which you should expect a different value
-every time. In this case, the iterator iterates over the given object and returns this kind of object
-every time
-    
+An iterator is a function you can call several times and of which you should
+expect a different value every time. In this case, the iterator iterates over
+the given object and returns this kind of object every time
+
+```javascript
     {
-        type: 'array|object|number|boolean|string|null|end-array|end-object'
-        value: 8 // actual value
+        type: 'array|object|number|boolean|string|null|end-array|end-object',
+        value: 8, // actual value
         key: 0 // the key (number or string) on which this value was found
     }
+```
 
 * `type` is the current state of the iterator. It mostly indicates the type of the current value
 * `value` (optional) present when the current value is a simple value (as opposed to a composed value)
@@ -47,23 +46,17 @@ while(v = next()) {
 // end-array
 ```
 
+## API
 
-Reference
----------
-
-#### ObjectIterator(source)
+### ObjectIterator(source)
 
 Returns an iterator over the given source value.
 
-
-TODOs
------
+## TODOs
 
 * Check for recursive walks
 
-
-License
--------
+## License
 
 [MIT](http://opensource.org/licenses/MIT)
 

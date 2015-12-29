@@ -8,9 +8,9 @@ exports.testTypesInArray = function(test) {
     while(v = next()) {
         test.equal(v.type, expected.shift(), 'Unexpected token type');
     }
-    test.equal(expected.length, 0, 'not everything has been traversed ('+expected.length+')');
+    test.equal(expected.length, 0, 'Not everything has been traversed ('+expected.length+')');
     test.done();
-}
+};
 
 exports.testKeysInArray = function(test) {
     var source = [1, 2, 3];
@@ -27,4 +27,4 @@ exports.testKeysInArray = function(test) {
     }
     test.equal(expected.length, 0, "Not everything has been traversed");
     test.done();
-}
+};
