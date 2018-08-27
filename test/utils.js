@@ -3,7 +3,8 @@ exports.consume = function (next, filter, map) {
   filter = filter || True
   map = map || identity
   const tokens = []
-  while(token = next()) {
+  let token
+  while (token = next()) { // eslint-disable-line no-cond-assign
     if (filter(token)) {
       tokens.push(map(token))
     }

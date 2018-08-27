@@ -1,10 +1,10 @@
 const { expect } = require('./utils')
-var oi = require('../');
+const oi = require('../')
 
 describe('Single value', () => {
   it('generates a token', () => {
-    var source = null;
-    var next = oi(source);
+    const source = null
+    const next = oi(source)
     expect(next()).to.deep.equal({
       type: 'null',
       value: null
