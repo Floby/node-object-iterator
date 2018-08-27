@@ -14,8 +14,9 @@ module.exports = function (source) {
   return next
 }
 
-function * ObjectIterator (source, context) {
+function * ObjectIterator (source, context, seen) {
   context = context || {}
+  seen = seen || new Map()
   const type = getType(source)
   if (isSimpleValue(type)) {
     return yield Object.assign({ type, value: source }, context)
@@ -28,22 +29,32 @@ function * ObjectIterator (source, context) {
   }
 
   function * iterateObject () {
+    if (seen.get(source)) {
+      throw Error('Found a circular reference during iterations')
+    }
+    seen.set(source, true)
     yield Object.assign({ type: 'object', value: null }, context)
     const entries = objectEntries(source)
     for (let i = 0; i < entries.length; ++i) {
       const key = entries[i][0]
       const value = entries[i][1]
-      yield * ObjectIterator(value, { key })
+      yield * ObjectIterator(value, { key }, seen)
     }
     yield Object.assign({ type: 'end-object', value: null }, context)
+    seen.delete(source)
   }
 
   function * iterateArray () {
+    if (seen.get(source)) {
+      throw Error('Found a circular reference during iterations')
+    }
+    seen.set(source, true)
     yield Object.assign({ type: 'array', value: null }, context)
     for (let i = 0; i < source.length; ++i) {
-      yield * ObjectIterator(source[i], { key: i })
+      yield * ObjectIterator(source[i], { key: i }, seen)
     }
     yield Object.assign({ type: 'end-array', value: null }, context)
+    seen.delete(source)
   }
 }
 
