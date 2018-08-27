@@ -1,17 +1,19 @@
 const { expect, consume } = require('./utils')
 const oi = require('../')
 
-describe('Nested values', () => {
-  it('finds arrays in objects', () => {
+describe.only('Nested values', () => {
+  it('finds array in objects', () => {
     const source = {array: [1]}
     const next = oi(source)
     const actual = consume(next)
-    actual
-      .filter(({ type }) => type === 'array')
-      .forEach(({ key }) => expect(key).to.equal('array'))
-    actual
-      .filter(({ type }) => type === 'number')
-      .forEach(({ key }) => expect(key).to.equal(0))
+
+    expect(actual).to.deep.equal([
+      { type: 'object', value: null },
+      { type: 'array', value: null, key: 'array' },
+      { type: 'number', value: 1, key: 0 },
+      { type: 'end-array', value: null, key: 'array' },
+      { type: 'end-object', value: null }
+    ])
   })
 
   it('finds objects in long array', () => {

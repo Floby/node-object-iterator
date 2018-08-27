@@ -1,7 +1,7 @@
 const { expect, consume } = require('./utils')
 const oi = require('../')
 
-describe('Arrays', () => {
+describe.only('Arrays', () => {
   it('it detects native types in an array', () => {
     // Given
     const source = [1, 2, 3]
