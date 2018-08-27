@@ -2,16 +2,16 @@
 
 module.exports = function (source) {
   const iterator = ObjectIterator(source)
-  let current = iterator.next()
-  return function next () {
-    if (current.done) {
-
-    } else {
-      const value = current.value
-      current = iterator.next()
-      return value
+  next[Symbol.iterator] = function * () {
+    yield * iterator
+  }
+  function next () {
+    const current = iterator.next()
+    if (!current.done) {
+      return current.value
     }
   }
+  return next
 }
 
 function * ObjectIterator (source, context) {
