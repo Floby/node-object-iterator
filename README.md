@@ -24,17 +24,37 @@ every time
     }
 
 * `type` is the current state of the iterator. It mostly indicates the type of the current value
-* `value` (optional) present when the current value is a simple value (as opposed to a composed value)
-* `key` is the key this value was found on
+* `value` (optional) present when the current value is a simple value (as opposed to an array or object)
+* `key` is the key this value was found on. String for objects, numbers for arrays
 
 
 ```javascript
-var oi = require('object-iterator');
+var ObjectIterator = require('object-iterator');
 var source = [8, {one: 1, yes: true}, null];
-var next = oi(source);
+var next = ObjectIterator(source);
 var v;
 while(v = next()) {
     console.log(v.type);
+}
+
+// array
+// number
+// object
+// number
+// boolean
+// end-object
+// null
+// end-array
+```
+
+An `ObjectIterator()` is itself an [iterable object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators)
+an can be used as such
+
+```javascript
+var ObjectIterator = require('object-iterator');
+var source = [8, {one: 1, yes: true}, null];
+for (let v of ObjectIterator(source)) {
+  console.log(v)
 }
 
 // array
