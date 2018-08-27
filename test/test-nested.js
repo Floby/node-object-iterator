@@ -1,7 +1,8 @@
-const { expect, consume } = require('./utils')
+const expect = require('./utils').expect
+const consume = require('./utils').consume
 const oi = require('../')
 
-describe.only('Nested values', () => {
+describe('Nested values', () => {
   it('finds array in objects', () => {
     const source = {array: [1]}
     const next = oi(source)
@@ -20,7 +21,7 @@ describe.only('Nested values', () => {
     const source = {one: 1, array: [1, null, true, null]}
     const expected = ['object', 'number', 'array', 'number', 'null', 'boolean', 'null', 'end-array', 'end-object']
     const next = oi(source)
-    const actual = consume(next, null, ({ type }) => type)
+    const actual = consume(next, null, (v) => v.type)
     expect(actual).to.deep.equal(expected)
   })
 

@@ -1,3 +1,4 @@
+'use strict'
 
 module.exports = function (source) {
   const iterator = ObjectIterator(source)
@@ -13,7 +14,8 @@ module.exports = function (source) {
   }
 }
 
-function * ObjectIterator (source, context = {}) {
+function * ObjectIterator (source, context) {
+  context = context || {}
   const type = getType(source)
   if (isSimpleValue(type)) {
     return yield Object.assign({ type, value: source }, context)
@@ -27,9 +29,10 @@ function * ObjectIterator (source, context = {}) {
 
   function * iterateObject () {
     yield Object.assign({ type: 'object', value: null }, context)
-    const entries = Object.keys(source).map((key) => ([key, source[key]]))
+    const entries = objectEntries(source)
     for (let i = 0; i < entries.length; ++i) {
-      const [ key, value ] = entries[i]
+      const key = entries[i][0]
+      const value = entries[i][1]
       yield * ObjectIterator(value, { key })
     }
     yield Object.assign({ type: 'end-object', value: null }, context)
@@ -58,4 +61,9 @@ function getType (source) {
   let type = Array.isArray(source) ? 'array' : typeof source
   if (source === null) type = 'null'
   return type
+}
+
+function objectEntries (object) {
+  const entries = Object.keys(object).map((key) => ([key, object[key]]))
+  return entries
 }

@@ -1,3 +1,4 @@
+'use strict'
 const chai = require('chai')
 exports.consume = function (next, filter, map) {
   filter = filter || True

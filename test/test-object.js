@@ -1,7 +1,8 @@
-const { expect, consume } = require('./utils')
+const expect = require('./utils').expect
+const consume = require('./utils').consume
 const oi = require('../')
 
-describe.only('Objects', () => {
+describe('Objects', () => {
   it('finds types in object', () => {
     const source = {one: 1, two: 2, three: 3}
     const next = oi(source)
