@@ -1,8 +1,13 @@
+const { expect } = require('./utils')
 var oi = require('../');
 
-exports.testNull = function(test) {
+describe('Single value', () => {
+  it('generates a token', () => {
     var source = null;
     var next = oi(source);
-    test.equal(next().type, 'null', 'Type should be "null"');
-    test.done();
-}
+    expect(next()).to.deep.equal({
+      type: 'null',
+      value: null
+    })
+  })
+})

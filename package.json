@@ -2,12 +2,12 @@
   "name": "object-iterator",
   "version": "0.2.1",
   "engines": {
-    "node": ">=0.10"
+    "node": ">= 4, <= 10"
   },
   "description": "A module to walk through an object with an iterator",
   "main": "index.js",
   "scripts": {
-    "test": "nodeunit test/test-*.js"
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,8 @@
     "json"
   ],
   "devDependencies": {
-    "nodeunit": "0.7"
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
   },
   "author": "Florent Jaby <florent.jaby@gmail.com>",
   "license": "MIT",
