@@ -16,7 +16,7 @@ module.exports = function (source) {
 function * ObjectIterator (source, context = {}) {
   const type = getType(source)
   if (isSimpleValue(type)) {
-    return yield { type, value: source, ...context }
+    return yield Object.assign({ type, value: source }, context)
   } else if (type === 'array') {
     return yield * iterateArray()
   } else if (type === 'object') {
@@ -26,21 +26,21 @@ function * ObjectIterator (source, context = {}) {
   }
 
   function * iterateObject () {
-    yield { type: 'object', value: null, ...context }
+    yield Object.assign({ type: 'object', value: null }, context)
     const entries = Object.keys(source).map((key) => ([key, source[key]]))
     for (let i = 0; i < entries.length; ++i) {
       const [ key, value ] = entries[i]
       yield * ObjectIterator(value, { key })
     }
-    yield { type: 'end-object', value: null, ...context }
+    yield Object.assign({ type: 'end-object', value: null }, context)
   }
 
   function * iterateArray () {
-    yield { type: 'array', value: null, ...context }
+    yield Object.assign({ type: 'array', value: null }, context)
     for (let i = 0; i < source.length; ++i) {
       yield * ObjectIterator(source[i], { key: i })
     }
-    yield { type: 'end-array', value: null, ...context }
+    yield Object.assign({ type: 'end-array', value: null }, context)
   }
 }
 
