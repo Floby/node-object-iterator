@@ -76,11 +76,6 @@ Reference
 Returns an iterator over the given source value.
 
 
-TODOs
------
-
-* Check for recursive walks
-
 
 License
 -------
